@@ -14,8 +14,6 @@ import '../styles/Preloader.css'
 			<div class="block b-1"></div>
 			<div class="block b-2"></div>
 			<div class="block b-3"></div>
-			<div class="block b-4"></div>
-			<div class="block b-5"></div>
 		</div>
 	</div>
 	<HeroSection />
@@ -34,6 +32,7 @@ import '../styles/Preloader.css'
 	
 		function TitleAppear(){
 			return gsap.to(".char",{
+				delay: .5,
 				y: 0,
 				stagger: .05,
 			})
@@ -66,10 +65,9 @@ import '../styles/Preloader.css'
 	
 		function LoaderOut(){
 			return gsap.to("#loader",.3,{
-			width: 0,
-			x: -20,
+			clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
 			ease: "power4.inOut",
-			opacity: 0,
+
 		})
 		}
 	
@@ -102,7 +100,7 @@ import '../styles/Preloader.css'
 		}
 	
 		tl.add(TitleAppear()).add(CacadeImages())
-		tl.add(ImageContainerDesapear()).add(TitleDesapper())
+		tl.add(TitleDesapper())
 		tl.add(LoaderOut())
 		tl.add(SplitText()).add(MainImg(), "-=1");
 		tl.add(svgspin(),"-=1");
