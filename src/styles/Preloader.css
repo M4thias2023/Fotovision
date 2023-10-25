@@ -1,0 +1,60 @@
+#text-container{
+    display: flex;
+    gap: 20px;
+}
+
+.h1{
+    color: var(--bg);
+    font-size: 60px;
+    z-index: 100;
+}
+
+
+#loader{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 400px;
+    filter: brightness(0.8) blur(2px);
+}
+
+.block{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.b-1{
+    background: url(/bg-intro-1.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+.b-2{
+    background: url(/bg-intro-2.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+.b-3{
+    background: url(/bg-intro-3.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
+
+.b-4{
+    background: url(/bg-intro-4.jpg) 50% 50% no-repeat;
+}

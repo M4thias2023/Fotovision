@@ -1,0 +1,30 @@
+---
+import '../styles/navbar.css'
+---
+
+<header>
+    <div id="nav-container">
+        <nav>
+            <a href="#" id="logo">FotoVision</a>
+            <div id="nav-right">
+                <a href="#" id="login">Login</a>
+                <a href="#" id="signup">Sign Up</a>
+            </div>
+            <ul>
+                <li><a href="#" class="link">About</a></li>
+                <li><a href="#" class="link">Pricing</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<script>
+    import {gsap} from "gsap";
+    const link = document.querySelectorAll(".link");
+
+    gsap.from("header",{
+        duration: 1,
+        y: -100,
+        opacity: 0,
+        ease: "power2.out"
+    })
+</script>
