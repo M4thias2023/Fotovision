@@ -7,16 +7,8 @@ import '../styles/Preloader.css'
 <Layout title="FOTOVISION">
 	<div id="loader">
 		<div id="text-container">
-			<h1 class="h1">F</h1>
-			<h1 class="h1">O</h1>
-			<h1 class="h1">T</h1>
-			<h1 class="h1">O</h1>
-			<h1 class="h1">V</h1>
-			<h1 class="h1">I</h1>
-			<h1 class="h1">S</h1>
-			<h1 class="h1">I</h1>
-			<h1 class="h1">O</h1>
-			<h1 class="h1">N</h1>
+			<h1 id="my-text">FOTOVISION</h1>
+			
 		</div>
 		<div class="container">
 			<div class="block b-1"></div>
@@ -30,37 +22,53 @@ import '../styles/Preloader.css'
 </Layout>
 <script>
 	import {gsap} from 'gsap';
+	import SplitType from 'split-type'
 
 	window.addEventListener("load", function(){
-		let tl = gsap.timeline( {defaults: {duration: 2, ease: 'power2.out',delay: 3,stagger: 0.2}});
+		let tl = gsap.timeline();
+		const Text = new SplitType("#my-text")
+
+		
+
+
 	
-		function MainText(){
-			return gsap.to(".h1",{
-				clipPath: "polygon(0 0, 150% 0, 150% 150%, 0% 100%)",
-				duration: 2,
+		function TitleAppear(){
+			return gsap.to(".char",{
+				y: 0,
+				stagger: .05,
 			})
 		}
 	
-		function Intro(){
+		function CacadeImages(){
 			return gsap.from(".container > .block",1,{
 			delay: .5,
 			height: 0,
 			stagger: .3,
-			ease: "power2.out",
+			ease: "power4.inOut",
 		})
 		}
 	
-		function Intro2(){
-			return gsap.to(".container > .block",{
-				width: 0,
+		function ImageContainerDesapear(){
+			return gsap.to(".container",{
+				clipPath: "polygon(0 50%, 100% 50%, 100% 50%, 0 50%)",
+				opacity: 0,
+				ease: "power4.inOut",
+			})
+		}
+
+		function TitleDesapper(){
+			return gsap.to(".char",{
+				y: 100,
+				stagger: .05,
+				ease: "power4.inOut",
 			})
 		}
 	
-		function Outro(){
+		function LoaderOut(){
 			return gsap.to("#loader",.3,{
 			width: 0,
 			x: -20,
-			ease: "power2.out",
+			ease: "power4.inOut",
 			opacity: 0,
 		})
 		}
@@ -68,16 +76,16 @@ import '../styles/Preloader.css'
 		function SplitText(){
 			return gsap.from("#text-content > .title",{
 				y: 100,
-				ease: "power2.out",
+				ease: "power4.out",
 				opacity: 0,
 				stagger: .2
 			})
 		}
 	
-		function Img(){
+		function MainImg(){
 			return gsap.from("#img-wrapper",{
 				y: 100,
-				ease: "power2.out",
+				ease: "power4.out",
 				opacity: 0
 			})
 		}
@@ -93,8 +101,10 @@ import '../styles/Preloader.css'
 		
 		}
 	
-		tl.add(MainText()).add(Intro())
-		tl.add(Intro2()).add(Outro()).add(SplitText()).add(Img(), "-=1");
+		tl.add(TitleAppear()).add(CacadeImages())
+		tl.add(ImageContainerDesapear()).add(TitleDesapper())
+		tl.add(LoaderOut())
+		tl.add(SplitText()).add(MainImg(), "-=1");
 		tl.add(svgspin(),"-=1");
 	})
 
