@@ -1,5 +1,7 @@
 # **Documentación de Proyecto Astro y GSAP**
 
+![FOTOVISION - LOADER](https://raw.githubusercontent.com/M4thias2023/Fotovision/main/public/LOADER.png)
+
 ![FOTOVISION](https://raw.githubusercontent.com/M4thias2023/Fotovision/main/public/FOTOVISION.png)
 
 ## **Resumen**
