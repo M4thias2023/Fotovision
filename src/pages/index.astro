@@ -1,7 +1,7 @@
 ---
-import HeroSection from '../components/HeroSection.astro';
 import Layout from '../layouts/Layout.astro';
 import '../styles/Preloader.css'
+import '../styles/Hero.css'
 ---
 
 <Layout title="FOTOVISION">
@@ -14,22 +14,41 @@ import '../styles/Preloader.css'
 			<div class="block b-1"></div>
 			<div class="block b-2"></div>
 			<div class="block b-3"></div>
+			<div class="block b-4"></div>
+			<div class="block b-5"></div>
 		</div>
 	</div>
-	<HeroSection />
+	<section id="main">
+		<div id="main-content">
+			<div id="text-content">
+				<h1 class="title">SHARE</h1>
+				<div class="title" id="main-vc">
+					<h1>YOUR</h1>
+					<img src="/Shape1.svg" alt="main" id="svg-spin">
+				</div>
+				<h1 class="title">STYLE</h1>
+			</div>
+			<div id="img-wrapper">
+				<img src="/model.png" alt="" id="img">
+				<div id="bg-img"></div>
+			</div>
+		</div>
+	</section>
 </Layout>
 <script>
 	import {gsap} from 'gsap';
 	import SplitType from 'split-type'
-
-	window.addEventListener("load", function(){
-		let tl = gsap.timeline();
-		const Text = new SplitType("#my-text")
-
-		
-
-
+	let tl = gsap.timeline( {defaults: {opacity:0}});
+	const Text = new SplitType("#my-text")
 	
+	function init(){
+
+		function loader(){
+			return gsap.from("#loader",{
+				autoAlpha: 0,
+			})
+		}
+
 		function TitleAppear(){
 			return gsap.to(".char",{
 				delay: .5,
@@ -40,22 +59,13 @@ import '../styles/Preloader.css'
 	
 		function CacadeImages(){
 			return gsap.from(".container > .block",1,{
-			delay: .5,
 			height: 0,
-			stagger: .3,
+			stagger: .4,
 			ease: "power4.inOut",
 		})
 		}
-	
-		function ImageContainerDesapear(){
-			return gsap.to(".container",{
-				clipPath: "polygon(0 50%, 100% 50%, 100% 50%, 0 50%)",
-				opacity: 0,
-				ease: "power4.inOut",
-			})
-		}
 
-		function TitleDesapper(){
+		function TitleDesappear(){
 			return gsap.to(".char",{
 				y: 100,
 				stagger: .05,
@@ -69,6 +79,13 @@ import '../styles/Preloader.css'
 			ease: "power4.inOut",
 
 		})
+		}
+
+		function main(){
+			return gsap.from("#main",{
+				autoAlpha: 0,
+				opacity: 0,
+			})
 		}
 	
 		function SplitText(){
@@ -99,11 +116,16 @@ import '../styles/Preloader.css'
 		
 		}
 	
-		tl.add(TitleAppear()).add(CacadeImages())
-		tl.add(TitleDesapper())
-		tl.add(LoaderOut())
+		tl.add(loader)
+		tl.add(TitleAppear(),"-=.2").add(CacadeImages(),"-=1.5")
+		tl.add(TitleDesappear())
+		tl.add(LoaderOut()).add(main())
 		tl.add(SplitText()).add(MainImg(), "-=1");
 		tl.add(svgspin(),"-=1");
+	}
+
+	window.addEventListener("load", function(){
+		init();
 	})
 
 </script>

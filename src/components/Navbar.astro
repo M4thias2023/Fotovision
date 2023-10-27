@@ -19,12 +19,10 @@ import '../styles/navbar.css'
 </header>
 <script>
     import {gsap} from "gsap";
-    const link = document.querySelectorAll(".link");
 
     gsap.from("header",{
-        duration: 1,
+        delay: 2,
         y: -100,
         opacity: 0,
-        ease: "power2.out"
     })
 </script>
